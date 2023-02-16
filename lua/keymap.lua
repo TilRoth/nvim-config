@@ -49,9 +49,6 @@ vim.keymap.set('v', '<C-s>', ':sort i<CR>', { silent = true })
 -- Delete trailing whitespaces
 vim.keymap.set('n', '<BS>', ':%s/\\s\\+$//<CR>:w<CR>', opts)
 
-vim.keymap.set('x', '*', ':lua require("lua/utils").search_for_visual_selection(true)<cr>', opts)
-vim.keymap.set('x', '?', ':lua require("lua/utils").search_for_visual_selection(false)<cr>', opts)
-
 ------------------------------------------------------------------------------------------------------------------------
 
 ----- Plugin mappings --------------------------------------------------------------------------------------------------
@@ -75,10 +72,6 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
          h = { function() require('telescope.builtin').git_bcommits() end, 'Find buffer\'s Git commit (history)' },
      },
  }, { prefix = 'f' })
-
- --Navigate buffers
- --vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', opts)
- --vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', opts)
 
  wk.register({
      name = 'bbye',
