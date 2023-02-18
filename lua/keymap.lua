@@ -102,5 +102,16 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
      t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
  }, {prefix = '<leader>'})
 
+ wk.register({
+    name = 'LaTex',
+    v = { '<cmd>VimtexView<cr>', 'View document' },
+    l = { '<cmd>VimtexCompile<cr>', 'Compile' },
+    c = { '<cmd>VimtexClean<cr>', 'Clean' },
+    e = { '<cmd>VimtexErrors<cr>', 'Show Errors' },
+    i = { '<cmd>VimtexInfo<cr>', 'Info' },
+    t = { '<cmd>VimtexTocOpen<cr>', 'Table of contens' },
+    T = { '<cmd>VimtexTocToggle<cr>', 'Table of contens toggle' },
+ }, { prefix = '<leader>v' })
+
 ------------------------------------------------------------------------------------------------------------------------
 
