@@ -21,6 +21,8 @@ require('packer').startup(function()
     use 'scrooloose/nerdcommenter'
     use 'kyazdani42/nvim-web-devicons'
     use 'goolord/alpha-nvim'
+    use 'puremourning/vimspector'
+    use 'akinsho/toggleterm.nvim'
     use "lukas-reineke/indent-blankline.nvim"
     use {
         'kyazdani42/nvim-tree.lua',
@@ -95,5 +97,7 @@ require('plugins.configs.nvim-tree')
 require('plugins.configs.nvim-treesitter')
 require('plugins.configs.tabline')
 require('plugins.configs.telescope')
+require('plugins.configs.toggleterm')
+require('plugins.configs.vimspector')
 require('plugins.configs.vimtex')
 

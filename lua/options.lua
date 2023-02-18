@@ -25,8 +25,7 @@ o.signcolumn = 'yes' -- always show signcolumn to prevent shifting signcolumn wi
 o.relativenumber = true -- Show the line number relative to the line with the cursor in front of each line.
 o.scrolloff = 7 -- Minimal number of screen lines to keep above and below the cursor.
 o.sidescrolloff = 15 -- The minimal number of screen columns to keep to the left and to the right of the cursor if 'nowrap' is set.
-o.conceallevel = 2 -- Determine how text with the "conceal" syntax attribute |:syn-conceal| is shown: Concealed text is completely hidden unless it has a custom replacement character defined (see |:syn-cchar|).
-o.concealcursor = '' -- Sets the modes in which text in the cursor line can also be concealed.
+o.conceallevel = 0 -- Determine how text with the "conceal" syntax attribute |:syn-conceal| is shown: Concealed text is completely hidden unless it has a custom replacement character defined (see |:syn-cchar|).
 
 ------------------------------------------------------------------------------------------------------------------------
 

@@ -25,6 +25,7 @@ vim.keymap.set('x', 'J', ':move \'>+1<CR>gv-gv', opts)
 vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', opts)
 
 -- Better terminal navigation
+vim.keymap.set('t', '<esc>', '<C-\\><C-n>', termopts)
 vim.keymap.set('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
 vim.keymap.set('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
 vim.keymap.set('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
@@ -84,6 +85,22 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
      g = { '<cmd>vsplit<cr>', 'Vertical split' },
      v = { '<cmd>split<cr>', 'Horizontal split' },
  }, { prefix = 's' })
+
+ wk.register({
+    name = 'Debug',
+    b = { '<cmd>call vimspector#ToggleBreakpoint()<cr>', 'Make a breakpoint' },
+    B = { '<cmd>call vimspector#ClearBreakpoints()<cr>', 'Clear all breakpoints' },
+    o = { '<cmd>call vimspector#StepOver()<cr>', 'Step over' },
+    i = { '<cmd>call vimspector#StepInto()<cr>', 'Step into' },
+    x = { '<cmd>call vimspector#RunToCursor()<cr>', 'Run to cursor' },
+    c = { '<cmd>call vimspector#Continue()<cr>', 'Launch or continue' },
+    k = { '<cmd>call vimspector#Stop() | VimspectorReset<cr>', 'Terminate' },
+    r = { '<cmd>call vimspector#Restart()<cr>', 'Restart' },
+ }, { prefix = '<leader>d' })
+
+ wk.register({
+     t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
+ }, {prefix = '<leader>'})
 
 ------------------------------------------------------------------------------------------------------------------------
 

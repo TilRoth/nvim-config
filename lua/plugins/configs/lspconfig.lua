@@ -9,7 +9,7 @@ wk.register({
     ['?'] = { function() diag.open_float() end, 'Show diagnostic under cursor' },
     ['[d'] = { function() diag.goto_prev() end, 'Goto previous diagnostic' },
     [']d'] = { function() diag.goto_next() end, 'Goto next diagnostic' },
-    ['<leader>d'] = { function() diag.setloclist() end, 'Show all diagnostics' }
+    ['<leader>e'] = { function() diag.setloclist() end, 'Show all diagnostics' }
 })
 
 -- Use an on_attach function to only map the following keys
