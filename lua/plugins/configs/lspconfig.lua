@@ -1,9 +1,7 @@
+local vim = vim
 local wk = require('which-key')
 local diag = vim.diagnostic
 local buf = vim.lsp.buf
-
--- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
 
 wk.register({
     ['?'] = { function() diag.open_float() end, 'Show diagnostic under cursor' },
@@ -15,9 +13,6 @@ wk.register({
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
     if client.server_capabilities.goto_definition == true then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", 'v:lua.vim.lsp.tagfunc')
     end
@@ -25,9 +20,6 @@ local on_attach = function(client, bufnr)
     if client.server_capabilities.document_formatting == true then
         vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
     end
-
-    -- Mappings. See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
     wk.register({
         name = 'LSP',
@@ -81,6 +73,11 @@ require('lspconfig')['bashls'].setup{
 }
 
 require('lspconfig')['lua_ls'].setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+require('lspconfig')['phpactor'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }

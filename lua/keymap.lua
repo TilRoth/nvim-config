@@ -79,8 +79,8 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
 
  wk.register({
      name = 'bbye',
-     ['bd'] = { '<cmd>Bdelete<cr>', 'Delete current buffer' },
- }, { prefix = '<Leader>' })
+     ['d'] = { '<cmd>Bdelete<cr>', 'Delete current buffer' },
+ }, { prefix = '<Leader>b' })
 
  vim.keymap.set('', 's', '<Nop>', opts)
  wk.register({
