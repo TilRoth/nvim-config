@@ -23,7 +23,8 @@ require('packer').startup(function()
     use 'goolord/alpha-nvim'
     use 'puremourning/vimspector'
     use 'akinsho/toggleterm.nvim'
-    use "lukas-reineke/indent-blankline.nvim"
+    use 'windwp/nvim-autopairs'
+    use 'lukas-reineke/indent-blankline.nvim'
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
@@ -92,6 +93,7 @@ require('plugins.configs.lspconfig')
 require('plugins.configs.lsp_signature')
 require('plugins.configs.lualine')
 require('plugins.configs.nerdcommenter')
+require('plugins.configs.nvim-autopairs')
 require('plugins.configs.nvim-cmp')
 require('plugins.configs.nvim-tree')
 require('plugins.configs.nvim-treesitter')
