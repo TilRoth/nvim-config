@@ -1,3 +1,4 @@
+local vim = vim
 local  o = vim.opt
 local g = vim.g
 
@@ -13,13 +14,6 @@ o.termguicolors = true -- Enables 24-bit RGB color in the TUI.
 o.background = 'dark' --When set to "dark" or "light", adjusts the default color groups for that background type.
 o.colorcolumn = '121' -- Useful to align text.
 o.cursorline = true -- Highlight the text line of the cursor with CursorLine |hl-CursorLine|.
-
--- Configure colors of cursorline and colorcolumn
-vim.cmd[[
-hi! ColorColumn term=reverse cterm=reverse
-hi! CursorLineNr term=bold,reverse cterm=bold,reverse ctermfg=6
-]]
-
 o.number = true -- Print the line number in front of each line.
 o.signcolumn = 'yes' -- always show signcolumn to prevent shifting signcolumn with gitgutter etc.
 o.relativenumber = true -- Show the line number relative to the line with the cursor in front of each line.

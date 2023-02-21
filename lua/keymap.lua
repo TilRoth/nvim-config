@@ -58,6 +58,10 @@ vim.keymap.set('n', '<BS>', ':%s/\\s\\+$//<CR>:w<CR>', opts)
 
 local wk = require('which-key')
 
+wk.register({
+    s = { '<cmd>update<cr>', 'save file' }
+}, { prefix = '<leader>' })
+
 vim.keymap.set('n', '<C-c>', ":call nerdcommenter#Comment('n', 'toggle')<CR>", opts)
 vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", opts)
 
@@ -68,6 +72,8 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
  wk.register({
      name = 'Telescope',
      f = { function() require('telescope.builtin').find_files() end, 'Find file' },
+     ['/'] = { function() require('telescope.builtin').live_grep() end, 'grep in directory' },
+     s = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, 'seach in buffer' },
      b = { function() require('telescope').extensions.file_browser.file_browser() end, 'File browser' },
      g = {
          f = { function() require('telescope.builtin').git_files() end, 'Find file tracked in Git' },

@@ -12,9 +12,6 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     -- Plugins ---------------------------------------------------------------------------------------------------------
-    use 'airblade/vim-gitgutter'
-    use 'morhetz/gruvbox'
-    use 'sainnhe/everforest'
     use 'preservim/tagbar'
     use 'lervag/vimtex'
     use 'nvim-lua/plenary.nvim'
@@ -23,6 +20,7 @@ require('packer').startup(function()
     use 'goolord/alpha-nvim'
     use 'puremourning/vimspector'
     use 'akinsho/toggleterm.nvim'
+    use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-autopairs'
     use 'lukas-reineke/indent-blankline.nvim'
     use {
@@ -75,6 +73,12 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
     --------------------------------------------------------------------------------------------------------------------
 
+    -- colorschemes ----------------------------------------------------------------------------------------------------
+    use 'morhetz/gruvbox'
+    use 'sainnhe/everforest'
+    use {'catppuccin/nvim', as = 'catppuccin' }
+    --------------------------------------------------------------------------------------------------------------------
+
     -- Automatically set up your configuration after cloning packer.nvim.  Put this at the end after all plugins.
     if packer_bootstrap then
         require('packer').sync()
@@ -88,6 +92,7 @@ end)
 require('plugins.configs.alpha')
 require('plugins.configs.blankline')
 require('plugins.configs.colorscheme')
+require('plugins.configs.gitsigns')
 require('plugins.configs.mason')
 require('plugins.configs.lspconfig')
 require('plugins.configs.lsp_signature')
