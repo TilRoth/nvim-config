@@ -97,14 +97,15 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
 
  wk.register({
     name = 'Debug',
-    b = { '<cmd>call vimspector#ToggleBreakpoint()<cr>', 'Make a breakpoint' },
-    B = { '<cmd>call vimspector#ClearBreakpoints()<cr>', 'Clear all breakpoints' },
-    o = { '<cmd>call vimspector#StepOver()<cr>', 'Step over' },
-    i = { '<cmd>call vimspector#StepInto()<cr>', 'Step into' },
-    x = { '<cmd>call vimspector#RunToCursor()<cr>', 'Run to cursor' },
-    c = { '<cmd>call vimspector#Continue()<cr>', 'Launch or continue' },
-    k = { '<cmd>call vimspector#Stop() | VimspectorReset<cr>', 'Terminate' },
-    r = { '<cmd>call vimspector#Restart()<cr>', 'Restart' },
+    b = { function() require('dap').toggle_breakpoint() end, 'Make a breakpoint' },
+    B = { function() require('dap').toggle_breakpoint(vim.fn.input('Condition: ')) end, 'Conditional breakpoint' },
+    e = { function() require('dap').clear_breakpoints() end, 'Clear all breakpoints' },
+    o = { function() require('dap').step_over() end, 'Step over' },
+    i = { function() require('dap').step_into() end, 'Step into' },
+    x = { function() require('dap').run_to_cursor() end, 'Run to cursor' },
+    c = { function() require('dap').continue() end, 'Launch or continue' },
+    k = { function() require('dap').terminate() end, 'Terminate' },
+    r = { function() require('dap').restart() end, 'Restart' },
  }, { prefix = '<leader>d' })
 
  wk.register({

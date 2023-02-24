@@ -18,7 +18,9 @@ require('packer').startup(function()
     use 'scrooloose/nerdcommenter'
     use 'kyazdani42/nvim-web-devicons'
     use 'goolord/alpha-nvim'
-    use 'puremourning/vimspector'
+    -- use 'puremourning/vimspector'
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
     use 'akinsho/toggleterm.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-autopairs'
@@ -70,6 +72,7 @@ require('packer').startup(function()
     -- LanguageServerProtocol (LSP) plugins ----------------------------------------------------------------------------
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    use 'jay-babu/mason-nvim-dap.nvim'
     use 'neovim/nvim-lspconfig'
     --------------------------------------------------------------------------------------------------------------------
 
@@ -92,6 +95,7 @@ end)
 require('plugins.configs.alpha')
 require('plugins.configs.blankline')
 require('plugins.configs.colorscheme')
+require('plugins.configs.dap')
 require('plugins.configs.gitsigns')
 require('plugins.configs.mason')
 require('plugins.configs.lspconfig')
@@ -105,6 +109,6 @@ require('plugins.configs.nvim-treesitter')
 require('plugins.configs.tabline')
 require('plugins.configs.telescope')
 require('plugins.configs.toggleterm')
-require('plugins.configs.vimspector')
+-- require('plugins.configs.vimspector')
 require('plugins.configs.vimtex')
 

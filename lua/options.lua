@@ -46,7 +46,6 @@ o.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for.
 o.softtabstop = 4 -- Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>.
 o.shiftwidth = 4 -- Number of spaces to use for each step of (auto)indent.  Used for |'cindent'|, |>>|, |<<|, etc.
 o.smarttab = true -- When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'. 'tabstop' or 'softtabstop' is used in other places.
--- TODO
 o.listchars = 'tab:┣━,extends:@,trail:·' -- Strings to use in 'list' mode and for the |:list| command. It is a comma-separated list of string settings.
 o.list = true -- Useful to see the difference between tabs and spaces and for trailing blanks. Further changed by the 'listchars' option.
 o.textwidth = 120

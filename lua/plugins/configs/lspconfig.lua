@@ -45,39 +45,41 @@ local on_attach = function(client, bufnr)
     })
 end
 
-local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require'cmp_nvim_lsp'.default_capabilities(lsp_capabilities)
+local lsp = require('lspconfig')
 
-require('lspconfig')['clangd'].setup{
+lsp['clangd'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['ltex'].setup{
+lsp['ltex'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['texlab'].setup{
+lsp['texlab'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['pyright'].setup{
+lsp['pyright'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['bashls'].setup{
+lsp['bashls'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['lua_ls'].setup{
+lsp['lua_ls'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
 
-require('lspconfig')['phpactor'].setup{
+lsp['phpactor'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
