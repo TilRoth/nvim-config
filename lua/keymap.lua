@@ -106,6 +106,11 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
     c = { function() require('dap').continue() end, 'Launch or continue' },
     k = { function() require('dap').terminate() end, 'Terminate' },
     r = { function() require('dap').restart() end, 'Restart' },
+    w = {
+        name = 'watches',
+        a = { function() require('dapui').elements.watches.add(vim.fn.input('Expression: ')) end, 'Add watch' },
+        r = { function() require('dapui').elements.watches.remove(vim.fn.input('Index: ')) end, 'Remove watch' },
+    }
  }, { prefix = '<leader>d' })
 
  wk.register({
