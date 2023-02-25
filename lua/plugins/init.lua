@@ -19,8 +19,6 @@ require('packer').startup(function()
     use 'kyazdani42/nvim-web-devicons'
     use 'goolord/alpha-nvim'
     -- use 'puremourning/vimspector'
-    use 'mfussenegger/nvim-dap'
-    use 'rcarriga/nvim-dap-ui'
     use 'akinsho/toggleterm.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-autopairs'
@@ -67,6 +65,12 @@ require('packer').startup(function()
     }
     use 'nvim-telescope/telescope-ui-select.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
+    --------------------------------------------------------------------------------------------------------------------
+
+    -- Debug Adapter Protocol ------------------------------------------------------------------------------------------
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'nvim-telescope/telescope-dap.nvim'
     --------------------------------------------------------------------------------------------------------------------
 
     -- LanguageServerProtocol (LSP) plugins ----------------------------------------------------------------------------

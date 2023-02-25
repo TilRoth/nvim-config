@@ -39,7 +39,9 @@ dap.configurations.cpp = {
     type = 'codelldb',
     request = 'launch',
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      local prog
+      vim.ui.input({ prompt = 'Path to executable: ' .. vim.fn.getcwd() .. '/'}, function(input) prog = input end)
+      return prog
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = false,
