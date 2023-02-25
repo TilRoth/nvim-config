@@ -62,5 +62,6 @@ dap.configurations.cpp = {
   },
 }
 
--- dap.configurations.c = dap.configurations.cpp
--- dap.configurations.rust = dap.configurations.cpp
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+require('nvim-dap-projects').search_project_config()
