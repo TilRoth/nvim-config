@@ -8,6 +8,7 @@ end
 
 ----- Install/load plugins ---------------------------------------------------------------------------------------------
 require('packer').startup(function()
+    local use = use
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -18,7 +19,6 @@ require('packer').startup(function()
     use 'scrooloose/nerdcommenter'
     use 'kyazdani42/nvim-web-devicons'
     use 'goolord/alpha-nvim'
-    -- use 'puremourning/vimspector'
     use 'akinsho/toggleterm.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-autopairs'
@@ -85,6 +85,7 @@ require('packer').startup(function()
     use 'morhetz/gruvbox'
     use 'sainnhe/everforest'
     use {'catppuccin/nvim', as = 'catppuccin' }
+    use 'projekt0n/github-nvim-theme'
     --------------------------------------------------------------------------------------------------------------------
 
     -- Automatically set up your configuration after cloning packer.nvim.  Put this at the end after all plugins.
@@ -114,6 +115,5 @@ require('plugins.configs.nvim-treesitter')
 require('plugins.configs.tabline')
 require('plugins.configs.telescope')
 require('plugins.configs.toggleterm')
--- require('plugins.configs.vimspector')
 require('plugins.configs.vimtex')
 

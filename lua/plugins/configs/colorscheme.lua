@@ -41,4 +41,8 @@ require("catppuccin").setup({
     },
 })
 
-vim.cmd 'colorscheme catppuccin'
+-- vim.cmd 'colorscheme catppuccin'
+-- vim.cmd 'colorscheme github_dark'
+-- vim.g.everforest_background = 'hard'
+vim.g.everforest_diagnostic_virtual_text = 'colored'
+vim.cmd 'colorscheme everforest'
