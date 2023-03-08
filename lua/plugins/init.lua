@@ -51,7 +51,7 @@ require('packer').startup(function()
             'hrsh7th/cmp-cmdline',
         }
     }
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- Telescope -------------------------------------------------------------------------------------------------------
     use {
@@ -111,7 +111,7 @@ require('plugins.configs.nerdcommenter')
 require('plugins.configs.nvim-autopairs')
 require('plugins.configs.nvim-cmp')
 require('plugins.configs.nvim-tree')
-require('plugins.configs.nvim-treesitter')
+-- require('plugins.configs.nvim-treesitter')
 require('plugins.configs.tabline')
 require('plugins.configs.tagbar')
 require('plugins.configs.telescope')
