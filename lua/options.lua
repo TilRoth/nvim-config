@@ -5,7 +5,6 @@ local g = vim.g
 o.lazyredraw = true -- When this option is set, the screen will not be redrawn while executing macros, registers and other commands that have not been typed.
 o.autoread = true -- When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again.
 g.shortmess = 'filnxtToOFc' -- helps to avoid all the |hit-enter| prompts and to avoid some other messages. It is a list of flags.
-o.clipboard = "unnamedplus" -- This allows neovim to access the system clipboard.
 o.fileencoding = "utf-8" -- The encoding written to a file.
 
 ----- Visuals ----------------------------------------------------------------------------------------------------------

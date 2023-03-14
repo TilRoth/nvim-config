@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
+local vim = vim
 
 ----- Global mappings --------------------------------------------------------------------------------------------------
 
@@ -41,6 +42,11 @@ vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('n', '<S-l>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<S-h>', ':bprevious<CR>', opts)
 
+-- Clipboard
+vim.keymap.set('v', '<leader>y', '"+y', opts)
+vim.keymap.set('v', '<leader>p', '"+p', opts)
+vim.keymap.set('n', '<leader>p', '"+p', opts)
+
 vim.keymap.set('n', '<F6>', function() vim.opt.spell = not vim.o.spell end, opts)
 
 -- Stop highlight search with <Esc> in normal mode
@@ -58,16 +64,16 @@ vim.keymap.set('n', '<BS>', ':%s/\\s\\+$//<CR>:w<CR>', opts)
 
 local wk = require('which-key')
 
-wk.register({
+ wk.register({
+    t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
     s = { '<cmd>update<cr>', 'save file' }
-}, { prefix = '<leader>' })
+}, {prefix = '<leader>'})
 
 vim.keymap.set('n', '<C-c>', ":call nerdcommenter#Comment('n', 'toggle')<CR>", opts)
 vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", opts)
 
- vim.keymap.set('n', '<F2>', ':TagbarToggle<CR>', opts)
- vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>', opts)
-
+vim.keymap.set('n', '<F2>', ':TagbarToggle<CR>', opts)
+vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>', opts)
 
  wk.register({
      name = 'Telescope',
@@ -112,10 +118,6 @@ vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", o
         r = { function() require('dapui').elements.watches.remove(vim.fn.input('Index: ')) end, 'Remove watch' },
     }
  }, { prefix = '<leader>d' })
-
- wk.register({
-     t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
- }, {prefix = '<leader>'})
 
  wk.register({
     name = 'LaTex',
