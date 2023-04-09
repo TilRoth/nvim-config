@@ -23,6 +23,10 @@ require('packer').startup(function()
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-autopairs'
     use 'lukas-reineke/indent-blankline.nvim'
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
@@ -32,7 +36,7 @@ require('packer').startup(function()
     }
     use 'moll/vim-bbye'
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
-    use 'kdheepak/tabline.nvim'
+    use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
     use { 'folke/which-key.nvim', config = function() require('which-key').setup() end }
     use { 'ray-x/lsp_signature.nvim' }
     use { 'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim' }
@@ -112,7 +116,7 @@ require('plugins.configs.nvim-autopairs')
 require('plugins.configs.nvim-cmp')
 require('plugins.configs.nvim-tree')
 -- require('plugins.configs.nvim-treesitter')
-require('plugins.configs.tabline')
+require('plugins.configs.bufferline')
 require('plugins.configs.tagbar')
 require('plugins.configs.telescope')
 require('plugins.configs.toggleterm')

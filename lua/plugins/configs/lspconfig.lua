@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
         d = { function() buf.declaration() end, 'Goto declaration' },
         D = { function() buf.definition() end, 'Goto definition' },
         i = { function() buf.implementation() end, 'Goto implementation' },
-        t = { function() buf.type_definition() end, 'Goto type definition' },
+        a = { function() buf.type_definition() end, 'Goto type definition' },
     }, { prefix = 'g' } )
 
     wk.register({
@@ -83,3 +83,9 @@ lsp['phpactor'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
+
+lsp['rust_analyzer'].setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+

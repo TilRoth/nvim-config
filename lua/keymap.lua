@@ -14,7 +14,6 @@ vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
 vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
 vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
 vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
-vim.keymap.set('n', 'q', '<C-w>c', opts)
 
 -- Resize with arrows
 vim.keymap.set('n', '<C-Up>', ':resize +2<CR>', opts)
@@ -64,6 +63,13 @@ vim.keymap.set('n', '<BS>', ':%s/\\s\\+$//<CR>:w<CR>', opts)
 
 local wk = require('which-key')
 
+-- Switch to previous tab
+vim.api.nvim_create_autocmd('TabLeave', { command = 'let g:lasttab = tabpagenr()' })
+wk.register{
+    name = 'Tabs',
+    ['g<Tab>'] = { '<cmd>exe "tabn ".g:lasttab<cr>', 'Switch to previous tab' }
+}
+
  wk.register({
     t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
     s = { '<cmd>update<cr>', 'save file' }
@@ -88,18 +94,6 @@ vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>', opts)
          h = { function() require('telescope.builtin').git_bcommits() end, 'Find buffer\'s Git commit (history)' },
      },
  }, { prefix = 'f' })
-
- wk.register({
-     name = 'bbye',
-     ['d'] = { '<cmd>Bdelete<cr>', 'Delete current buffer' },
- }, { prefix = '<Leader>b' })
-
- vim.keymap.set('', 's', '<Nop>', opts)
- wk.register({
-     name = 'Split',
-     g = { '<cmd>vsplit<cr>', 'Vertical split' },
-     v = { '<cmd>split<cr>', 'Horizontal split' },
- }, { prefix = 's' })
 
  wk.register({
     name = 'Debug',
