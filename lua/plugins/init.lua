@@ -21,6 +21,7 @@ require('packer').startup(function()
     use 'goolord/alpha-nvim'
     use 'akinsho/toggleterm.nvim'
     use 'lewis6991/gitsigns.nvim'
+    use 'Shatur/neovim-session-manager'
     use 'windwp/nvim-autopairs'
     use 'lukas-reineke/indent-blankline.nvim'
     use({
@@ -111,6 +112,7 @@ require('plugins.configs.mason')
 require('plugins.configs.lspconfig')
 require('plugins.configs.lsp_signature')
 require('plugins.configs.lualine')
+require('plugins.configs.neovim-session-manager')
 require('plugins.configs.nerdcommenter')
 require('plugins.configs.nvim-autopairs')
 require('plugins.configs.nvim-cmp')
