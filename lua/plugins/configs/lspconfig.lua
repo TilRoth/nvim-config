@@ -38,10 +38,10 @@ local on_attach = function(client, bufnr)
         D = { function() buf.definition() end, 'Goto definition' },
         i = { function() buf.implementation() end, 'Goto implementation' },
         a = { function() buf.type_definition() end, 'Goto type definition' },
-    }, { prefix = 'g' } )
+    }, { prefix = 'g', buffer = bufnr  } )
 
     wk.register({
-        K = { function() buf.hover() end, 'Tooltip for item under cursor' },
+        K = { function() buf.hover() end, 'Tooltip for item under cursor' }, { buffer = bufnr },
     })
 end
 
