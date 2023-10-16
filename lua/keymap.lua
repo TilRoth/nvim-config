@@ -21,10 +21,6 @@ vim.keymap.set('n', '<C-Down>', ':resize -2<CR>', opts)
 vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 
--- Move text up and down
-vim.keymap.set('x', 'J', ':move \'>+1<CR>gv-gv', opts)
-vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', opts)
-
 -- Better terminal navigation
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>', term_opts)
 vim.keymap.set('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
@@ -36,10 +32,6 @@ vim.keymap.set('t', '<C-q>', '<C-\\><C-N><C-w>c', term_opts)
 -- Stay in indent mode
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
-
--- Navigate buffers
-vim.keymap.set('n', '<S-l>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<S-h>', ':bprevious<CR>', opts)
 
 -- Clipboard
 vim.keymap.set('v', '<leader>y', '"+y', opts)
