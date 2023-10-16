@@ -77,6 +77,7 @@ require('packer').startup(function()
     use 'rcarriga/nvim-dap-ui'
     use 'nvim-telescope/telescope-dap.nvim'
     use 'ldelossa/nvim-dap-projects'
+    use 'mfussenegger/nvim-dap-python'
     --------------------------------------------------------------------------------------------------------------------
 
     -- LanguageServerProtocol (LSP) plugins ----------------------------------------------------------------------------
