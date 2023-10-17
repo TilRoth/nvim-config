@@ -6,11 +6,6 @@ vim.api.nvim_create_autocmd('TabLeave', { command = 'let g:lasttab = tabpagenr()
 
 -- normal mode
 wk.register({
-    ['<C-h>'] = {'<C-w>h', 'Move to left window'},
-    ['<C-j>'] = {'<C-w>j', 'Move to window below'},
-    ['<C-k>'] = {'<C-w>k', 'Move to window above'},
-    ['<C-l>'] = {'<C-w>l', 'Move to right window'},
-
     ['<C-Up>'] = {':resize +2<CR>', 'resize up'},
     ['<C-Down>'] = {':resize -2<CR>', 'resize down'},
     ['<C-Left>'] = {':vertical resize -2<CR>', 'resize left'},
