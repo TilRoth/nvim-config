@@ -102,7 +102,6 @@ return {
                         gd = { buf.definition, 'Goto definition' },
                         gi = { buf.implementation, 'Goto implementation' },
                         K = { buf.hover, 'Tooltip for item under cursor' },
-                        ['<C-k>'] = { buf.signature_help, 'Signature help' },
                     }, { buffer = ev.buf })
                 end,
             })
