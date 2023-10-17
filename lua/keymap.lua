@@ -1,120 +1,37 @@
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 local vim = vim
-
------ Global mappings --------------------------------------------------------------------------------------------------
-
---Remap space as leader key
-vim.keymap.set('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
-vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
-vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
-vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
-
--- Resize with arrows
-vim.keymap.set('n', '<C-Up>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<C-Down>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', opts)
-
--- Better terminal navigation
-vim.keymap.set('t', '<esc>', '<C-\\><C-n>', term_opts)
-vim.keymap.set('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
-vim.keymap.set('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
-vim.keymap.set('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
-vim.keymap.set('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
-vim.keymap.set('t', '<C-q>', '<C-\\><C-N><C-w>c', term_opts)
-
--- Stay in indent mode
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
-
--- Clipboard
-vim.keymap.set('v', '<leader>y', '"+y', opts)
-vim.keymap.set('v', '<leader>p', '"+p', opts)
-vim.keymap.set('n', '<leader>p', '"+p', opts)
-
-vim.keymap.set('n', '<F6>', function() vim.opt.spell = not vim.o.spell end, opts)
-
--- Stop highlight search with <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', opts)
-
--- Sort visual lines
-vim.keymap.set('v', '<C-s>', ':sort i<CR>', term_opts)
-
--- Delete trailing whitespaces
-vim.keymap.set('n', '<BS>', ':%s/\\s\\+$//<CR>:w<CR>', opts)
-
-------------------------------------------------------------------------------------------------------------------------
-
------ Plugin mappings --------------------------------------------------------------------------------------------------
-
 local wk = require('which-key')
-
--- Switch to previous tab
 vim.api.nvim_create_autocmd('TabLeave', { command = 'let g:lasttab = tabpagenr()' })
-wk.register{
-    name = 'Tabs',
-    ['g<Tab>'] = { '<cmd>exe "tabn ".g:lasttab<cr>', 'Switch to previous tab' }
-}
 
- wk.register({
-    t = { '<cmd>ToggleTerm<cr>', 'Show terminal' },
-    s = { '<cmd>update<cr>', 'save file' }
-}, {prefix = '<leader>'})
+-- normal mode
+wk.register({
+    ['<C-h>'] = {'<C-w>h', 'Move to left window'},
+    ['<C-j>'] = {'<C-w>j', 'Move to window below'},
+    ['<C-k>'] = {'<C-w>k', 'Move to window above'},
+    ['<C-l>'] = {'<C-w>l', 'Move to right window'},
 
-vim.keymap.set('n', '<C-c>', ":call nerdcommenter#Comment('n', 'toggle')<CR>", opts)
-vim.keymap.set('v', '<C-c>', ":call nerdcommenter#Comment('x', 'toggle')<CR>", opts)
+    ['<C-Up>'] = {':resize +2<CR>', 'resize up'},
+    ['<C-Down>'] = {':resize -2<CR>', 'resize down'},
+    ['<C-Left>'] = {':vertical resize -2<CR>', 'resize left'},
+    ['<C-Right>'] = {':vertical resize +2<CR>', 'resize right'},
 
-vim.keymap.set('n', '<F2>', ':TagbarToggle<CR>', opts)
-vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>', opts)
+    ['<leader>s'] = { '<cmd>update<cr>', 'save file' },
+    ['g<Tab>'] = { '<cmd>exe "tabn ".g:lasttab<cr>', 'Switch to previous tab' },
+    ['<F6>'] = { function() vim.opt.spell = not vim.o.spell end, 'toggle vim spell' },
+    ['<Esc>'] = {':nohlsearch<CR>', 'Stop highlight search'},
+    ['<BS>'] = {':%s/\\s\\+$//<CR>:w<CR>', 'Remove trailing whitespaces'},
 
- wk.register({
-     name = 'Telescope',
-     f = { function() require('telescope.builtin').find_files() end, 'Find file' },
-     ['/'] = { function() require('telescope.builtin').live_grep() end, 'grep in directory' },
-     s = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, 'seach in buffer' },
-     b = { function() require('telescope').extensions.file_browser.file_browser() end, 'File browser' },
-     g = {
-         f = { function() require('telescope.builtin').git_files() end, 'Find file tracked in Git' },
-         b = { function() require('telescope.builtin').git_branches() end, 'Find Git branch' },
-         c = { function() require('telescope.builtin').git_commits() end, 'Find Git commit' },
-         h = { function() require('telescope.builtin').git_bcommits() end, 'Find buffer\'s Git commit (history)' },
-     },
- }, { prefix = 'f' })
+    ['<leader>p'] = {'"+p', 'paste from clipboard in normal mode'},
+}, { silent = true, mode = 'n' })
 
- wk.register({
-    name = 'Debug',
-    b = { function() require('dap').toggle_breakpoint() end, 'Make a breakpoint' },
-    B = { function() require('dap').toggle_breakpoint(vim.fn.input('Condition: ')) end, 'Conditional breakpoint' },
-    e = { function() require('dap').clear_breakpoints() end, 'Clear all breakpoints' },
-    o = { function() require('dap').step_over() end, 'Step over' },
-    i = { function() require('dap').step_into() end, 'Step into' },
-    x = { function() require('dap').run_to_cursor() end, 'Run to cursor' },
-    c = { function() require('dap').continue() end, 'Launch or continue' },
-    k = { function() require('dap').terminate() end, 'Terminate' },
-    r = { function() require('dap').restart() end, 'Restart' },
-    w = {
-        name = 'watches',
-        a = { function() require('dapui').elements.watches.add(vim.fn.input('Expression: ')) end, 'Add watch' },
-        r = { function() require('dapui').elements.watches.remove(vim.fn.input('Index: ')) end, 'Remove watch' },
-    }
- }, { prefix = '<leader>d' })
+-- visual mode
+wk.register({
+    ['<'] = {'<gv', 'stay in indent mode to left'},
+    ['>'] = {'>gv', 'stay in indent mode to right'},
+    ['<C-s>'] = {':sort i<CR>', 'Sort visual lines'},
 
- wk.register({
-    name = 'LaTex',
-    v = { '<cmd>VimtexView<cr>', 'View document' },
-    l = { '<cmd>VimtexCompile<cr>', 'Compile' },
-    c = { '<cmd>VimtexClean<cr>', 'Clean' },
-    e = { '<cmd>VimtexErrors<cr>', 'Show Errors' },
-    i = { '<cmd>VimtexInfo<cr>', 'Info' },
-    t = { '<cmd>VimtexTocOpen<cr>', 'Table of contens' },
-    T = { '<cmd>VimtexTocToggle<cr>', 'Table of contens toggle' },
- }, { prefix = '<leader>v' })
-
-------------------------------------------------------------------------------------------------------------------------
+    ['<leader>y'] = {'"+y', 'copy to clipboard'},
+    ['<leader>p'] = {'"+p', 'paste from clipboard in visual mode'},
+}, { silent = true , mode = 'v' })
 
