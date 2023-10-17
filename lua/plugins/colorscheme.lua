@@ -9,5 +9,7 @@ return {
     },
     { 'catppuccin/nvim', name = 'catppuccin' },
     { 'projekt0n/github-nvim-theme' },
+    { 'rebelot/kanagawa.nvim' },
+    { 'Everblush/nvim', name = 'everblush' },
 }
 
