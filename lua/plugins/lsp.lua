@@ -36,11 +36,13 @@ return {
             'p00f/clangd_extensions.nvim',
             'hrsh7th/cmp-nvim-lsp',
             'barreiroleo/ltex_extra.nvim',
+            'SmiteshP/nvim-navbuddy',
         },
         config = function()
             -- Setup language servers.
             local lspconfig = require('lspconfig')
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local wk = require('which-key')
             lspconfig.pyright.setup{
                 capabilities = capabilities
             }
@@ -54,6 +56,18 @@ return {
                 capabilities = capabilities
             }
             lspconfig.texlab.setup{
+                on_attach = function()
+                    wk.register({
+                    name = 'LaTex',
+                        v = { '<cmd>VimtexView<cr>', 'View document' },
+                        l = { '<cmd>VimtexCompile<cr>', 'Compile' },
+                        c = { '<cmd>VimtexClean<cr>', 'Clean' },
+                        e = { '<cmd>VimtexErrors<cr>', 'Show Errors' },
+                        i = { '<cmd>VimtexInfo<cr>', 'Info' },
+                        t = { '<cmd>VimtexTocOpen<cr>', 'Table of contens' },
+                        T = { '<cmd>VimtexTocToggle<cr>', 'Table of contens toggle' },
+                    }, { prefix = '<leader>v' })
+                end,
                 capabilities = capabilities
             }
             lspconfig.ltex.setup{
@@ -70,7 +84,6 @@ return {
                 capabilities = capabilities
             }
 
-            local wk = require('which-key')
             local diag = vim.diagnostic
 
             -- Global mappings.
