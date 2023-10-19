@@ -80,6 +80,11 @@ return {
                 on_attach = function()
                     require("clangd_extensions.inlay_hints").setup_autocmd()
                     require("clangd_extensions.inlay_hints").set_inlay_hints()
+                    wk.register({
+                        ['<tab>'] = { '<cmd>ClangdSwitchSourceHeader<cr>', 'Switch between source/header file' },
+                        ['s<tab>'] = { '<cmd>split<cr><cmd>ClangdSwitchSourceHeader<cr>', 'Open source/header file in horizontal split' },
+                        ['v<tab>'] = { '<cmd>vsplit<cr><cmd>ClangdSwitchSourceHeader<cr>', 'Open source/header file in vertical split' },
+                    }, { prefix = '<leader>l', silent = true })
                 end,
                 capabilities = capabilities
             }
