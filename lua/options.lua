@@ -7,6 +7,7 @@ o.lazyredraw = true -- When this option is set, the screen will not be redrawn w
 o.autoread = true -- When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again.
 g.shortmess = 'filnxtToOFc' -- helps to avoid all the |hit-enter| prompts and to avoid some other messages. It is a list of flags.
 o.fileencoding = "utf-8" -- The encoding written to a file.
+g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
 
 ----- Visuals ----------------------------------------------------------------------------------------------------------
 
