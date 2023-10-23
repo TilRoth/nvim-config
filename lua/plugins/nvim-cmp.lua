@@ -31,7 +31,7 @@ return {
                     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
                     ['<C-e>'] = cmp.mapping.abort(),
                     ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ['<C-c>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 },
                 sorting = {
                     comparators = {

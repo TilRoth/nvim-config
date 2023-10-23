@@ -21,7 +21,7 @@ return {
 
             wk.register({
                 name = "Molten",
-                v = {":<C-u>MoltenEvaluateVisual<CR>", "evaluate visual"},
+                e = {":<C-u>MoltenEvaluateVisual<CR>", "evaluate visual"},
             }, { prefix = '<leader>m', silent = true, mode = 'v' })
         end
     },
