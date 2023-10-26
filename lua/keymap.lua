@@ -17,16 +17,19 @@ wk.register({
     ['<Esc>'] = {':nohlsearch<CR>', 'Stop highlight search'},
     ['<BS>'] = {':%s/\\s\\+$//<CR>:w<CR>', 'Remove trailing whitespaces'},
 
-    ['<leader>p'] = {'"+p', 'paste from clipboard in normal mode'},
+    ['<leader>y'] = {'"+y', 'copy to clipboard'},
+    ['<leader>p'] = {'"+p', 'paste from clipboard'},
 }, { silent = true, mode = 'n' })
 
 -- visual mode
 wk.register({
     ['<'] = {'<gv', 'stay in indent mode to left'},
     ['>'] = {'>gv', 'stay in indent mode to right'},
+    ['J'] = {":m '>+1<CR>gv=gv", 'move text down and indent'},
+    ['K'] = {":m '<-2<CR>gv=gv", 'move up text and indent'},
     ['<C-s>'] = {':sort i<CR>', 'Sort visual lines'},
 
     ['<leader>y'] = {'"+y', 'copy to clipboard'},
-    ['<leader>p'] = {'"+p', 'paste from clipboard in visual mode'},
+    ['<leader>p'] = {'"+p', 'paste from clipboard'},
 }, { silent = true , mode = 'v' })
 
