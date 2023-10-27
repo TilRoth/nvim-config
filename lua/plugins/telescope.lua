@@ -1,6 +1,6 @@
 return {
     { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim', 'folke/which-key.nvim' },
         config = function()
             require('telescope').setup {
                 defaults = {
@@ -97,6 +97,18 @@ return {
                 }
             }
             telescope.load_extension('ui-select')
+        end
+    },
+    { 'debugloop/telescope-undo.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim', 'folke/which-key.nvim' },
+        config = function()
+            local telescope = require('telescope')
+            telescope.load_extension('undo')
+
+            local wk = require('which-key')
+            wk.register({
+                 u = { function() require('telescope').extensions.undo.undo() end, 'Undo history' },
+            }, { prefix = 'f' })
         end
     },
 }
