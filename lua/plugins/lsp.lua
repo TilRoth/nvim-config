@@ -24,6 +24,7 @@ return {
                     'texlab',
                     'ltex',
                     'clangd',
+                    'denols',
                 },
             }
         end
@@ -83,6 +84,9 @@ return {
                         ['v<tab>'] = { '<cmd>vsplit<cr><cmd>ClangdSwitchSourceHeader<cr>', 'Open source/header file in vertical split' },
                     }, { prefix = '<leader>l', silent = true })
                 end,
+                capabilities = capabilities
+            }
+            lspconfig.denols.setup{
                 capabilities = capabilities
             }
 
