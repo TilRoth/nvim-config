@@ -29,10 +29,8 @@ return {
             -- Set menu
             dashboard.section.buttons.val = {
                 dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-                dashboard.button( "ff", "  > Find file", ":Telescope find_files<CR>"),
-                dashboard.button( "fb", "  > File Browser", ":Telescope file_browser<CR>"),
+                dashboard.button( "ff", "  > Find file", ":Telescope find_files<CR>"),
                 dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
-                dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
             }
 
             -- Set footer
