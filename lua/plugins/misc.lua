@@ -26,4 +26,15 @@ return {
     { 'j-hui/fidget.nvim',
         opts = { },
     },
+    { 'simrat39/symbols-outline.nvim',
+        dependencies = { 'folke/which-key.nvim' },
+        config = function()
+            local symbol_outline = require('symbols-outline')
+            local wk = require('which-key')
+            symbol_outline.setup()
+            wk.register({
+                s = { '<cmd>SymbolsOutline<cr>', 'SymbolsOutline' }
+            }, { prefix = '<leader>n', silent = true })
+        end
+    },
 }

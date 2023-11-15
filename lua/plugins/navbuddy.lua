@@ -14,8 +14,9 @@ return {
                 lsp = { auto_attach = true }
             }
             wk.register({
-                ['<leader>n'] = { '<cmd>Navbuddy<cr>', 'Navbuddy' }
-            }, { silent = true })
+                name = 'Navigation',
+                n = { '<cmd>Navbuddy<cr>', 'Navbuddy' }
+            }, { prefix = '<leader>n', silent = true })
         end
     }
 }
