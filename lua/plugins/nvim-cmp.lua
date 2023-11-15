@@ -9,6 +9,7 @@ return {
             'saadparwaiz1/cmp_luasnip',
             'L3MON4D3/LuaSnip',
             'p00f/clangd_extensions.nvim',
+            'onsails/lspkind.nvim'
         },
         config = function()
             local cmp = require'cmp'
@@ -44,6 +45,9 @@ return {
                         cmp.config.compare.length,
                         cmp.config.compare.order,
                     },
+                },
+                formatting = {
+                    format = require('lspkind').cmp_format()
                 },
             }
 
