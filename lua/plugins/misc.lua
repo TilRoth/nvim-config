@@ -37,4 +37,10 @@ return {
             }, { prefix = '<leader>n', silent = true })
         end
     },
+    { 'folke/trouble.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            auto_preview = false,
+        },
+    },
 }

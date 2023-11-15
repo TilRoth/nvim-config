@@ -38,12 +38,14 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'barreiroleo/ltex_extra.nvim',
             'SmiteshP/nvim-navbuddy',
+            'folke/trouble.nvim'
         },
         config = function()
             -- Setup language servers.
             local lspconfig = require('lspconfig')
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local wk = require('which-key')
+            local trouble = require('trouble')
             lspconfig.pyright.setup{
                 capabilities = capabilities
             }
@@ -97,7 +99,7 @@ return {
                 ['?'] = { diag.open_float, 'Show diagnostic under cursor' },
                 ['[d'] = { diag.goto_prev, 'Goto previous diagnostic' },
                 [']d'] = { diag.goto_next, 'Goto next diagnostic' },
-                ['<leader>e'] = { diag.setloclist, 'Show all diagnostics' }
+                ['<leader>e'] = { trouble.toggle, 'Show all diagnostics' }
             })
 
             -- Use LspAttach autocommand to only map the following keys
@@ -110,7 +112,7 @@ return {
                     wk.register({
                         name = 'LSP',
                         h = { buf.signature_help, 'Show signature help' },
-                        x = { buf.references, 'Show references' },
+                        x = { function() trouble.toggle('lsp_references') end, 'Show references' },
                         r = { buf.rename, 'Refactor rename item under cursor' },
                         a = { buf.code_action, 'Perform code action for item under cursor' },
                         f = { function() buf.format {async=true} end, 'Perform formatting (whole file)' },
