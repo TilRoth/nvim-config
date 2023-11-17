@@ -99,7 +99,7 @@ return {
                 ['?'] = { diag.open_float, 'Show diagnostic under cursor' },
                 ['[d'] = { diag.goto_prev, 'Goto previous diagnostic' },
                 [']d'] = { diag.goto_next, 'Goto next diagnostic' },
-                ['<leader>e'] = { trouble.toggle, 'Show all diagnostics' }
+                ['<leader>e'] = { function() trouble.toggle('document_diagnostics') end, 'Show all diagnostics' }
             })
 
             -- Use LspAttach autocommand to only map the following keys
