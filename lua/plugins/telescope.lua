@@ -56,15 +56,17 @@ return {
 
             local wk = require('which-key')
             wk.register({
-                 name = 'Telescope',
-                 f = { function() require('telescope.builtin').find_files() end, 'Find file' },
-                 ['/'] = { function() require('telescope.builtin').live_grep() end, 'grep in directory' },
-                 s = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, 'seach in buffer' },
-                 g = {
-                     f = { function() require('telescope.builtin').git_files() end, 'Find file tracked in Git' },
-                     b = { function() require('telescope.builtin').git_branches() end, 'Find Git branch' },
-                     c = { function() require('telescope.builtin').git_commits() end, 'Find Git commit' },
-                     h = { function() require('telescope.builtin').git_bcommits() end, 'Find buffer\'s Git commit (history)' },
+                name = 'Telescope',
+                f = { function() require('telescope.builtin').find_files() end, 'Find file' },
+                ['/'] = { function() require('telescope.builtin').live_grep() end, 'grep in directory' },
+                b = { function() require('telescope.builtin').current_buffer_fuzzy_find() end, 'fuzzy find in buffer' },
+                s = { function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end, 'Find symbols' },
+                d = { function() require('telescope.builtin').diagnostics{ severity_limit = vim.diagnostic.severity.WARN } end, 'Search diagnostics' },
+                g = {
+                    f = { function() require('telescope.builtin').git_files() end, 'Find file tracked in Git' },
+                    b = { function() require('telescope.builtin').git_branches() end, 'Find Git branch' },
+                    c = { function() require('telescope.builtin').git_commits() end, 'Find Git commit' },
+                    h = { function() require('telescope.builtin').git_bcommits() end, 'Find buffer\'s Git commit (history)' },
                  },
             }, { prefix = 'f' })
         end
