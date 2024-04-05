@@ -74,6 +74,9 @@ return {
                 capabilities = capabilities,
                 on_attach = function()
                     require('ltex_extra').setup{}
+                    vim.cmd 'setlocal textwidth=0'
+                    vim.cmd 'setlocal colorcolumn=0'
+                    vim.cmd 'setlocal wrap'
                 end
             }
             lspconfig.clangd.setup{
