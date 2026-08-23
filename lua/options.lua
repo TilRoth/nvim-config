@@ -3,11 +3,15 @@ local o = vim.opt
 local g = vim.g
 
 g.mapleader = ' '
-o.lazyredraw = true -- When this option is set, the screen will not be redrawn while executing macros, registers and other commands that have not been typed.
 o.autoread = true -- When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim, automatically read it again.
-g.shortmess = 'filnxtToOFc' -- helps to avoid all the |hit-enter| prompts and to avoid some other messages. It is a list of flags.
+o.shortmess = 'filnxtToOFc' -- helps to avoid all the |hit-enter| prompts and to avoid some other messages. It is a list of flags.
 o.fileencoding = "utf-8" -- The encoding written to a file.
-g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+-- No remaining plugin uses the remote-plugin providers; disabling them keeps
+-- :checkhealth clean and skips the interpreter probing at startup.
+g.loaded_python3_provider = 0
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
 
 ----- Visuals ----------------------------------------------------------------------------------------------------------
 
@@ -15,6 +19,7 @@ o.termguicolors = true -- Enables 24-bit RGB color in the TUI.
 o.background = 'dark' --When set to "dark" or "light", adjusts the default color groups for that background type.
 o.colorcolumn = '121' -- Useful to align text.
 o.cursorline = true -- Highlight the text line of the cursor with CursorLine |hl-CursorLine|.
+o.winborder = 'rounded' -- Default border for floating windows (hover, signature help, diagnostics).
 o.number = true -- Print the line number in front of each line.
 o.signcolumn = 'yes' -- always show signcolumn to prevent shifting signcolumn with gitgutter etc.
 o.relativenumber = true -- Show the line number relative to the line with the cursor in front of each line.
@@ -32,7 +37,6 @@ o.splitright = true -- When on, splitting a window will put the new window right
 ----- Wildmenu configuration for command-line completion ---------------------------------------------------------------
 
 o.wildignorecase = true -- Ignore case when completing file names and directories.
-o.wildchar = vim.api.nvim_replace_termcodes('<Tab>', true, true, true)[1] -- Character you have to type to start wildcard expansion in the command-line
 o.wildmenu = true -- Enable wildmenu "enhanced mode", showing completions *above* the command line.
 o.wildmode = 'list:longest,list:full' -- Completion behavior: When more than one match, list all matches and complete till longest common string.
 
@@ -58,7 +62,7 @@ o.formatoptions = 'tcrqnlj' -- This is a sequence of letters which describes how
 
 ----- Undo configuration -----------------------------------------------------------------------------------------------
 
-g.undodir = os.getenv('HOME') .. '/.cache/nvim/undo' -- List of directory names for undo files, separated with commas.
+o.undodir = os.getenv('HOME') .. '/.cache/nvim/undo' -- List of directory names for undo files, separated with commas.
 o.undofile = true -- When on, Vim automatically saves undo history to an undo file when writing a buffer to a file, and restores undo history from the same file on buffer read.
 o.undolevels = 200 -- Maximum number of changes that can be undone.
 o.undoreload = 10000 -- Save the whole buffer for undo when reloading it. The save only happens when this option is negative or when the number of lines is smaller than the value of this option.
@@ -75,6 +79,7 @@ o.smartcase = true -- Override the 'ignorecase' option if the search pattern con
 
 ------------------------------------------------------------------------------------------------------------------------
 
-g.printfont = 'Courier:h8' -- The name of the font that will be used for |:hardcopy|. See |pfn-option|.
+-- 'printfont' was dropped here: Neovim removed Vim's :hardcopy printing entirely,
+-- so the option does not exist and setting it errors.
 vim.cmd [[set iskeyword+=-]]
 

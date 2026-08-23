@@ -1,25 +1,17 @@
 return {
     { 'mfussenegger/nvim-dap',
+        dependencies = { 'folke/which-key.nvim' },
         config = function()
             local dap = require('dap')
-            -- not installed by mason
-            dap.adapters.lldb = {
-                type = 'executable',
-                command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
-                name = 'lldb'
-            }
 
-            -- installed by mason
+            -- Installed with `:MasonInstall codelldb`. mason prepends its bin/ to PATH,
+            -- so the bare command resolves.
             dap.adapters.codelldb = {
-                type = "server",
-                port = "${port}",
+                type = 'server',
+                port = '${port}',
                 executable = {
-                  -- provide the absolute path for `codelldb` command if not using the one installed using `mason.nvim`
-                  command = "codelldb",
-                  args = { "--port", "${port}" },
-
-                  -- On windows you may have to uncomment this:
-                  -- detached = false,
+                    command = 'codelldb',
+                    args = { '--port', '${port}' },
                 },
             }
 
@@ -53,71 +45,43 @@ return {
             }
 
             dap.configurations.c = dap.configurations.cpp
-            dap.configurations.rust = dap.configurations.cpp
 
-
-            local wk = require('which-key')
-            wk.register({
-                name = 'Debug',
-                b = { function() dap.toggle_breakpoint() end, 'Make a breakpoint' },
-                B = { function() dap.toggle_breakpoint(vim.fn.input('Condition: ')) end, 'Conditional breakpoint' },
-                e = { function() dap.clear_breakpoints() end, 'Clear all breakpoints' },
-                o = { function() dap.step_over() end, 'Step over' },
-                i = { function() dap.step_into() end, 'Step into' },
-                x = { function() dap.run_to_cursor() end, 'Run to cursor' },
-                c = { function() dap.continue() end, 'Launch or continue' },
-                k = { function() dap.terminate() end, 'Terminate' },
-                r = { function() dap.restart() end, 'Restart' },
-            }, { prefix = '<leader>d' })
+            require('which-key').add({
+                { '<leader>d', group = 'Debug' },
+                { '<leader>db', function() dap.toggle_breakpoint() end, desc = 'Make a breakpoint' },
+                { '<leader>dB', function() dap.toggle_breakpoint(vim.fn.input('Condition: ')) end, desc = 'Conditional breakpoint' },
+                { '<leader>de', function() dap.clear_breakpoints() end, desc = 'Clear all breakpoints' },
+                { '<leader>do', function() dap.step_over() end, desc = 'Step over' },
+                { '<leader>di', function() dap.step_into() end, desc = 'Step into' },
+                { '<leader>dx', function() dap.run_to_cursor() end, desc = 'Run to cursor' },
+                { '<leader>dc', function() dap.continue() end, desc = 'Launch or continue' },
+                { '<leader>dk', function() dap.terminate() end, desc = 'Terminate' },
+                { '<leader>dr', function() dap.restart() end, desc = 'Restart' },
+            })
         end
     },
     { 'rcarriga/nvim-dap-ui',
-        dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'},
+        dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio', 'folke/which-key.nvim' },
         config = function()
-            local dap = require("dap")
-            local dapui = require("dapui")
+            local dap = require('dap')
+            local dapui = require('dapui')
             dapui.setup()
 
-            dap.listeners.after.event_initialized["dapui_config"] = function()
+            dap.listeners.after.event_initialized['dapui_config'] = function()
               dapui.open()
             end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
+            dap.listeners.before.event_terminated['dapui_config'] = function()
               dapui.close()
             end
-            dap.listeners.before.event_exited["dapui_config"] = function()
+            dap.listeners.before.event_exited['dapui_config'] = function()
               dapui.close()
             end
 
-
-            local wk = require('which-key')
-            wk.register({
-                name = 'Debug',
-                w = {
-                    name = 'watches',
-                    a = { function() dapui.elements.watches.add(vim.fn.input('Expression: ')) end, 'Add watch' },
-                    r = { function() dapui.elements.watches.remove(vim.fn.input('Index: ')) end, 'Remove watch' },
-                }
-            }, { prefix = '<leader>d' })
-        end
-    },
-    { 'ldelossa/nvim-dap-projects',
-        dependencies = {'mfussenegger/nvim-dap'},
-        config = function()
-            require('nvim-dap-projects').search_project_config()
-        end
-    },
-    { 'mfussenegger/nvim-dap-python',
-        dependencies = {'mfussenegger/nvim-dap'},
-        config = function()
-            require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-        end
-    },
-    { 'jay-babu/mason-nvim-dap.nvim',
-        dependencies = {'williamboman/mason.nvim'},
-        config = function()
-            require("mason-nvim-dap").setup({
-                ensure_installed = { 'codelldb', 'debugpy' },
+            require('which-key').add({
+                { '<leader>dw', group = 'watches' },
+                { '<leader>dwa', function() dapui.elements.watches.add(vim.fn.input('Expression: ')) end, desc = 'Add watch' },
+                { '<leader>dwr', function() dapui.elements.watches.remove(vim.fn.input('Index: ')) end, desc = 'Remove watch' },
             })
         end
-    }
+    },
 }
