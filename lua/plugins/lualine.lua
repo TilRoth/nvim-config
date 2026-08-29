@@ -5,7 +5,7 @@ return {
             require('lualine').setup {
                 options = {
                     icons_enabled = true,
-                    theme = require'lualine.themes.everforest',
+                    theme = 'auto',
                     component_separators = { left = '\u{e0bd}', right = '\u{e0bd}'},
                     section_separators = { left = '\u{e0bc}', right = '\u{e0b6}'},
                     disabled_filetypes = {
