@@ -1,6 +1,11 @@
 return {
     { 'folke/persistence.nvim',
-        event = 'BufReadPre',
+        -- Deliberately not loaded by an event. persistence.setup() arms a
+        -- VimLeavePre save the moment it loads, so loading on BufReadPre meant
+        -- `nvim one-file.cpp` in a project directory would, on exit, overwrite
+        -- that directory's session with just that one file. Requiring it only
+        -- from the autocmd below keeps saving tied to session launches.
+        lazy = true,
         opts = {},
         init = function()
             -- Reproduces neovim-session-manager's AutoloadMode.CurrentDir: restore the
