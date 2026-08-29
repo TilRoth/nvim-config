@@ -10,7 +10,7 @@ return {
             }
 
             require('which-key').add({
-                { '<F3>', function() require('oil').toggle_float() end, desc = 'Toggle file browser', silent = true },
+                { '<leader>o', function() require('oil').toggle_float() end, desc = 'Toggle file browser', silent = true },
             })
         end,
     },
