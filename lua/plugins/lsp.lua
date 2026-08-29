@@ -8,11 +8,10 @@ return {
             'neovim/nvim-lspconfig',
             'saghen/blink.cmp',
         },
-        opts = {
-            -- Only what is actually used. Add servers here as they are needed;
-            -- mason-lspconfig v2 enables whatever it installs.
-            ensure_installed = { 'clangd' },
-        },
+        -- No server list: `automatic_enable` (on by default) calls vim.lsp.enable()
+        -- for every server mason has installed, and again on each install, so
+        -- `:MasonInstall <server>` is the only step needed to add a language.
+        opts = {},
     },
     { 'neovim/nvim-lspconfig',
         dependencies = {
@@ -75,14 +74,6 @@ return {
 
                     if client and client:supports_method('textDocument/inlayHint') then
                         vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
-                    end
-
-                    if client and client.name == 'clangd' then
-                        wk.add({
-                            { '<leader>l<tab>', '<cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Switch between source/header file', buffer = ev.buf },
-                            { '<leader>ls<tab>', '<cmd>split<cr><cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Open source/header file in horizontal split', buffer = ev.buf },
-                            { '<leader>lv<tab>', '<cmd>vsplit<cr><cmd>LspClangdSwitchSourceHeader<cr>', desc = 'Open source/header file in vertical split', buffer = ev.buf },
-                        })
                     end
                 end,
             })
